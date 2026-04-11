@@ -19,3 +19,8 @@ export const FEATURED_COURSES_QUERY = defineQuery(`*[
   "moduleCount": count(modules),
   "lessonCount": count(modules[]->lessons[])
 }`);
+
+export const STATS_QUERY = defineQuery(`{
+    "courseCount": count(*[_type == "course"]),
+    "lessonCount": count(*[_type == "lesson"])
+  }`);
