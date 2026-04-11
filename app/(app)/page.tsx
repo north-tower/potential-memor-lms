@@ -266,12 +266,10 @@ export default async function Home() {
 
           <div className="grid md:grid-cols-3 gap-6">
 
-            {courses.map((course) => {
-              const slug = course.slug?.current;
+            {courses.map((course) => (
+              
 
-              if(!slug){
-                return null;
-              }
+            
 
               <CourseCard
                 key={course.slug!.current!}
@@ -283,7 +281,7 @@ export default async function Home() {
                 moduleCount={course.moduleCount}
                 lessonCount={course.lessonCount}
               />
-})}
+))}
           </div>
 
           <div className="text-center mt-10">
