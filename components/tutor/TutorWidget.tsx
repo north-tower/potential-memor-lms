@@ -128,10 +128,11 @@ export function TutorWidget() {
   }
 
   // Only show widget for Ultra members
-  const isUltra = has?.({ plan: "ultra" });
-  if (!isUltra) {
-    return null;
-  }
+//   const isUltra = has?.({ plan: "ultra" });
+//   if (!isUltra) {
+//     return null;
+//   }
+  const isUltra = true
 
   return (
     <TutorProvider>

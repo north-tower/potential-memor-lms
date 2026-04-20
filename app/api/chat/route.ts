@@ -10,14 +10,24 @@ export async function POST(request: Request) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  if (!has?.({ plan: "ultra" })) {
-    return new Response("Ultra membership required", { status: 403 });
+//   if (!has?.({ plan: "ultra" })) {
+//     return new Response("Ultra membership required", { status: 403 });
+//   }
+
+  const body = await request.json();
+  console.log("chat body:", body);
+
+  if (!body || !Array.isArray(body.messages)) {
+    return Response.json(
+      { error: "Expected body: { messages: UIMessage[] }" },
+      { status: 400 },
+    );
   }
 
-  const { messages }: { messages: UIMessage[] } = await request.json();
+  const { messages }: { messages: UIMessage[] } = body;
 
   return createAgentUIStreamResponse({
     agent: tutorAgent,
-    messages,
+    uiMessages: messages,
   });
 }
